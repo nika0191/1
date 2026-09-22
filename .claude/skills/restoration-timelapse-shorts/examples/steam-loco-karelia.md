@@ -148,3 +148,8 @@ bash .claude/skills/restoration-timelapse-shorts/scripts/assemble.sh episodes/st
 
 All stages are edits of the anchor (parallel), so the camera is shared. Signed URLs expire in 24 h —
 download from app.bfl.ai history into frames/ for Flow.
+
+## Video (BFL FLUX.3)
+- Draft storyboard, 6 keyframes (00-05), 20 s, 9:16, audio: `f9c06e11-9dcb-43ea-b093-51b9236e0813`
+- Next: if the draft is good -> `enhance_video` (fhd); if a stage drifts -> redo that pair in Google Flow
+  (Frames to Video) and assemble with assemble.sh.
