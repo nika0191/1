@@ -1,7 +1,32 @@
 # Промпты: кадры стадий и видео
 
+## ★ Шот-лист действий (основной формат)
+Ролик = 8–12 шотов по 2–3 с. Каждый шот в Flow генерируется отдельно (8 с), потом режется до лучшего момента.
+Общий префикс для каждого шота:
+```
+Vertical 9:16, photorealistic documentary footage, handheld but steady, natural light,
+real construction work, realistic hands and tools, no text, no watermark.
+Audio: only the real sound of the action, no music.
+```
+Типы шотов (чередуй общий → крупный → крупный → общий):
+| Тип | Шаблон |
+|---|---|
+| Хук, общий «до» | `Wide shot of the abandoned {OBJECT}, {INTRIGUE}. Slow push-in.` |
+| Демонтаж | `Close-up: a worker's gloved hands rip rotten {MATERIAL} off with a crowbar, dust and splinters fly.` |
+| Резка | `Close-up: a chainsaw cuts through a fresh pine log, sawdust sprays toward the camera.` |
+| Ручная работа | `Extreme close-up: an axe carves a notch in a log, wood chips fly, slow motion.` |
+| Подъём | `Medium shot: two workers lift a heavy new {PART} into place and hammer it in.` |
+| Кладка/заливка | `Close-up: a trowel spreads mortar and lays a red brick, excess mortar squeezes out.` |
+| Отделка | `Macro: a paintbrush glides along carved wood trim, leaving a perfect glossy {COLOR} coat.` |
+| Таймлапс-связка | `Wide time-lapse from the same angle as the opening shot: {STAGE} happens fast, clouds race.` |
+| Финал, общий «после» | `Same wide angle as the opening shot: the restored {OBJECT} at blue hour, warm windows, chimney smoke.` |
+| Эмоция | `From behind: {PERSON} steps into the restored {ROOM}, pauses and touches {DETAIL}.` |
+
+
 Промпты пиши на **английском** — все модели (Veo, Grok Imagine, FLUX) понимают его лучше всего.
 Держи один «паспорт кадра» на весь эпизод и вставляй его в каждый промпт без изменений.
+
+## Статичный формат (только для общих планов «до/после»)
 
 ## 0. Паспорт кадра (CAMERA LOCK)
 ```
