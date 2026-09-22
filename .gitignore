@@ -5,3 +5,5 @@ dist/
 .DS_Store
 coverage/
 .nyc_output/
+# Restoration shorts working files (frames, clips, renders)
+episodes/
