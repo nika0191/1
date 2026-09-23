@@ -5,8 +5,17 @@
 
 ## ★ Статичная цепочка стадий (основной формат)
 Один локальный объект, одна неподвижная камера, объект меняется в кадре стадия за стадией. Это формат,
-который набирает миллионы у Bau Rausch, Structural.Aesthetics, Map Snap. Обычно достаточно **4–6 кадров
-стадий → 3–5 клипов-переходов** на 60–90 секунд ролика — не нужно дробить на десятки мелких вставок.
+который набирает миллионы у Bau Rausch, Structural.Aesthetics, Map Snap. Обычно достаточно **5–6 кадров
+стадий → 4–5 клипов-переходов** на 60–90 секунд ролика — не нужно дробить на десятки мелких вставок.
+
+**Железное правило: в статичных кадрах-стадиях НЕТ людей, техники и инструментов.** Кадр-стадия — это
+редактирование ПРЕДЫДУЩЕГО кадра, а не новая генерация. Если на стадии 2 стоит рабочий в жёлтой каске,
+модель при редактировании стадии 3 просто скопирует его пиксель в пиксель — рабочий «замрёт» в одной
+позе на всех следующих кадрах, и это будет заметно и странно. Люди и техника появляются **только**
+в видео-переходах между кадрами (раздел 3), и в каждом переходе — разное действие и разные позы,
+не повтор. Первая стадия — это буквально только уборка территории (сняли плющ/мусор), ничего
+конструктивного ещё не меняется; не смешивай несколько стадий в один шаг, иначе кадр останется
+«грязным» и результат не будет читаться как прогресс.
 
 ## 0. Паспорт кадра (CAMERA LOCK)
 ```
@@ -32,18 +41,22 @@ to its wheels in the forest soil`, `a faded Soviet mosaic is still visible under
 Edit this exact image. Keep the camera, framing, perspective, lighting, background and the
 building's geometry EXACTLY the same. Change only the following:
 ```
-Стадии (для 6-шаговой схемы):
-| # | Стадия | Что добавить |
-|---|---|---|
-| 1 | Расчистка | `debris and weeds removed, the ground is cleared and leveled, a small excavator and a dumpster on site, 3 workers in orange vests` |
-| 2 | Леса и демонтаж | `scaffolding covers the facade, damaged roof removed down to the beams, protective green mesh, stacks of new bricks and timber` |
-| 3 | Конструкция | `new roof structure and rafters installed, walls repaired with fresh brick patches, new window frames without glass` |
-| 4 | Закрытие контура | `new roof covering finished, windows glazed, scaffolding half removed, facade plastered but unpainted` |
-| 5 | Отделка | `scaffolding removed, facade painted in {COLOR}, decorative details restored, landscaping started, fresh gravel path` |
-| 6 | Финал | `fully restored and alive, golden hour / blue hour light, warm lights glowing in the windows, lush garden, {LIFE_DETAIL}` |
+Стадии (для 6-шаговой схемы). Колонка «Кадр» — без людей, идёт в промпт редактирования картинки.
+Колонка «Видео-переход» — с людьми, идёт в промпт видео между этим кадром и следующим (раздел 3);
+действие и позы должны отличаться от предыдущего перехода.
+
+| # | Стадия | Кадр (без людей) | Видео-переход (с людьми) |
+|---|---|---|---|
+| 1 | Расчистка | `all vegetation and debris removed, ground cleared and leveled, path swept clean, building still damaged, no scaffolding yet, no people or tools in the shot` | `Workers arrive, strip ivy and vines off the walls by hand, rake debris into a pile and haul it away in a wheelbarrow` |
+| 2 | Леса и демонтаж | `scaffolding covers the facade, damaged roof removed down to the beams, stacks of new bricks and timber sit neatly to one side, ground stays clean, no people or tools in the shot` | `A crew erects wooden scaffolding, climbs it, and pulls off the last damaged roof beams, tossing debris into a dumpster below` |
+| 3 | Конструкция | `new roof structure and rafters installed, walls repaired with fresh brick patches, new window frames in place without glass, no people or tools in the shot` | `Workers on the scaffolding hammer new rafters into place while others below lay fresh bricks and set new window frames` |
+| 4 | Закрытие контура | `new roof covering finished, windows glazed, scaffolding mostly gone, facade plastered but unpainted, no people or tools in the shot` | `A crew nails the final roof shingles into place, fits clear glass into each window, and takes the scaffolding down section by section` |
+| 5 | Отделка | `facade painted in {COLOR}, decorative details restored, landscaping started with a fresh gravel path, no people or tools in the shot` | `One worker rolls fresh paint across the facade while another lays a gravel path and plants shrubs along it` |
+| 6 | Финал | `fully restored and alive, golden hour / blue hour light, warm lights glowing in every window, lush garden, no people in the shot` | `As dusk falls the crew packs up and leaves; warm light switches on in each window one by one` |
 
 Для **поездов/транспорта** замени стадии: расчистка вокруг → подъём на домкраты/кран → снятие ржавчины
-(пескоструй) → грунт → покраска и хром → финал: едет/пар/огни.
+(пескоструй) → грунт → покраска и хром → финал: едет/пар/огни. Тот же принцип: домкраты/кран/инструменты
+на кадре — нет, только в видео.
 
 Для **упадка (обратный порядок)** начни с нового объекта и иди в обратную сторону: трещины → облезлая
 краска → разбитые стёкла → растения → обрушение.
@@ -103,6 +116,8 @@ Grok не фиксирует последний кадр — используй 
 | Водяной знак | Не используй бесплатные тарифы для финала; кадрируй `assemble.sh` чуть с запасом |
 | Мерцание между клипами | Берите последний кадр клипа N как старт клипа N+1 (а не исходную стадию) |
 | Клип получился короче, чем нужно | Продолжи с его последнего кадра (стоп-кадр/скриншот) тем же промптом — не новый якорь |
+| Рабочие в одинаковой позе на всех кадрах | Не описывай людей в промптах для статичных кадров-стадий — только в видео между ними, и каждый раз новое действие |
+| Кадр всё ещё выглядит «грязным» после стадии 1 | Стадия 1 — только уборка (убрали плющ/мусор), больше ничего не меняй; не смешивай уборку со стройкой в одном шаге |
 
 ## Шот-лист действий (опционально, не по умолчанию)
 Для канала, который хочет больше крупных планов рук/инструментов и ASMR-звука, вместо статичной
